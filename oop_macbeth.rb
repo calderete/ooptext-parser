@@ -1,7 +1,6 @@
 require 'pry'
 
 class FileOpen
-
 	def initialize
 		puts "Enter the .txt file name "
 		file = gets.chomp
@@ -15,7 +14,6 @@ class FileOpen
 end
 
 class FileParser
-
 	def word_parse(text)
 		word_hash = Hash.new
 		text.each_line do |line|
@@ -39,11 +37,11 @@ class WordRanker
 	def initialize(word_hash)
 		puts "Please enter the number ranking you wish to see"
 		rank = gets.chomp.to_i - 1
-		word_ranker(word_hash)
+		word_ranker(word_hash, rank)
 	end
 
-	def word_ranker(word_hash)
-		result = word_hash.sort{|a,b| a[1]<=>b[1]}.reverse[2]
+	def word_ranker(word_hash, rank)
+		result = word_hash.sort{|a,b| a[1]<=>b[1]}.reverse[rank]
 		puts "The word is '#{result[0]}' and occurres #{result[1]} times"
 	end
 end
