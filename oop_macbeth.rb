@@ -35,14 +35,26 @@ end
 
 class WordRanker
 	def initialize(word_hash)
-		puts "Please enter the number ranking you wish to see"
+		puts "Please enter the number ranking you wish to see or press enter for word search"
+		if gets == "\n"
+			 word_search(word_hash)
+		else
 		rank = gets.chomp.to_i - 1
 		word_ranker(word_hash, rank)
+		end
 	end
 
 	def word_ranker(word_hash, rank)
+		binding.pry
 		result = word_hash.sort{|a,b| a[1]<=>b[1]}.reverse[rank]
 		puts "The word is '#{result[0]}' and occurres #{result[1]} times"
+	end
+
+	def  word_search(word_hash)
+		puts "Enter the word that you wish to see the rank of"
+		word = gets.chomp
+		result = word_hash["#{word}"]
+		puts "The word '#{word}'' appears #{result} times in this file"
 	end
 end
 FileOpen.new
